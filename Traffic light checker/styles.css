@@ -1,0 +1,105 @@
+/* =========================================
+   GENERAL RESETS & BACKGROUND
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.background-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* High-quality blurred night street image from Unsplash */
+    background-image: url('https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Dark overlay to make the bright traffic lights pop out */
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+/* =========================================
+   TRAFFIC LIGHT STRUCTURE
+   ========================================= */
+
+.traffic-light-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* The main traffic light housing box */
+.traffic-light {
+    background: linear-gradient(145deg, #2c3e50, #1a252f);
+    width: 130px;
+    padding: 25px;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    /* 3D shadow effects to make it look physical */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(0, 0, 0, 0.9);
+    border: 3px solid #111;
+    z-index: 2;
+}
+
+/* The pole supporting the traffic light */
+.pole {
+    width: 24px;
+    height: 50vh; /* Extends off the bottom of the screen */
+    background: linear-gradient(to right, #2a2a2a, #5a5a5a, #2a2a2a);
+    position: absolute;
+    top: 100%; /* Start exactly at the bottom of the box */
+    z-index: 1;
+    border-left: 2px solid #111;
+    border-right: 2px solid #111;
+}
+
+/* =========================================
+   LIGHT BULB STYLES & GLOW EFFECTS
+   ========================================= */
+
+/* Base styles for all three lights (Unlit state) */
+.light {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #1a1a1a; /* Dark grey when off */
+    border: 4px solid #111;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 1);
+    transition: all 0.3s ease; /* Smooth fade when turning on/off */
+    opacity: 0.3; /* Dimmed heavily when off */
+}
+
+/* ACTIVE STATES: Triggered by JavaScript adding the "active" class */
+
+.light.red.active {
+    background-color: #ff3b30;
+    /* Outer red glow and inner white hotspot */
+    box-shadow: 0 0 40px #ff3b30, inset 0 0 20px rgba(255, 255, 255, 0.6);
+    opacity: 1;
+}
+
+.light.yellow.active {
+    background-color: #ffcc00;
+    box-shadow: 0 0 40px #ffcc00, inset 0 0 20px rgba(255, 255, 255, 0.6);
+    opacity: 1;
+}
+
+.light.green.active {
+    background-color: #34c759;
+    box-shadow: 0 0 40px #34c759, inset 0 0 20px rgba(255, 255, 255, 0.6);
+    opacity: 1;
+} 
